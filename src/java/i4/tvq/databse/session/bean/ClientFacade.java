@@ -6,9 +6,11 @@
 package i4.tvq.databse.session.bean;
 
 import i4.tvq.database.entity.Client;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -16,6 +18,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class ClientFacade extends AbstractFacade<Client> {
+
     @PersistenceContext(unitName = "TuVeuxQuoiPU")
     private EntityManager em;
 
@@ -28,4 +31,21 @@ public class ClientFacade extends AbstractFacade<Client> {
         super(Client.class);
     }
 
+    public boolean checkMail(String mail) {
+        Query query = em.createNamedQuery("Client.findByMailclient");
+        query.setParameter("mailclient", mail);
+        List<Client> clientTrouve = query.getResultList();
+        return !clientTrouve.isEmpty();
+    }
+
+    public Client connection(String mail, String passw) {
+        Query query = em.createNamedQuery("Client.findByMailclient");
+        query.setParameter("mailclient", mail);
+        List<Client> clientTrouve = query.getResultList();
+        if (clientTrouve.get(0).getPasswordclient().equals(passw)) {
+            return clientTrouve.get(0);
+        } else {
+            return null;
+        }
+    }
 }

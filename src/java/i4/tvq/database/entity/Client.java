@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Client.findByPrenomclient", query = "SELECT c FROM Client c WHERE c.prenomclient = :prenomclient"),
     @NamedQuery(name = "Client.findByMailclient", query = "SELECT c FROM Client c WHERE c.mailclient = :mailclient")})
 public class Client implements Serializable {
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -64,6 +65,14 @@ public class Client implements Serializable {
 
     public Client(BigDecimal idclient) {
         this.idclient = idclient;
+    }
+
+    public Client(BigDecimal idclient, String nomclient, String prenomclient, String mailclient, String passwordclient) {
+        this.idclient = idclient;
+        this.nomclient = nomclient;
+        this.prenomclient = prenomclient;
+        this.mailclient = mailclient;
+        this.passwordclient = passwordclient;
     }
 
     public BigDecimal getIdclient() {

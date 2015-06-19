@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view>
+        <h:head>
+            <f:facet name="first">
+                <title>Inscription</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <h:form target="">
+                <p:panel header="Inscription">
+                    <p:messages />
+                    <h:panelGrid columns="4" cellpadding="0">
+                        <h:outputLabel for="fname" value="Prénom : " />
+                        <p:inputText id="fname" value="#{validationBean.fname}" label="fname"/>
+                        <p:message for="fname" />
+                        <h:outputText value="#{validationBean.fname}" />
+
+                        <h:outputLabel for="name" value="Nom : " />
+                        <p:inputText id="name" value="#{validationBean.name}" label="name"/>
+                        <p:message for="name" />
+                        <h:outputText value="#{validationBean.name}" />
+
+                        <h:outputLabel for="mail" value="Adresse e-mail : " />
+                        <p:inputText id="mail" value="#{validationBean.mail}" label="mail"/>
+                        <p:message for="mail" />
+                        <h:outputText value="#{validationBean.mail}" />
+
+                        <h:outputLabel for="password" value="Mot de passe : " />
+                        <p:password id="password" value="#{validationBean.password}"
+                                    feedback="true" match="vpassword" label="password" required="true"/>
+                        <p:message for="password" />
+                        <h:outputText value="#{validationBean.password}" />
+
+                        <h:outputLabel for="vpassword" value="Vérification de mot de passe : "/>
+                        <p:password id="vpassword" value="#{validationBean.password}" label="vpassword" required="true"/>
+                        <p:message for="vpassword" />
+                        <h:outputText value="#{validationBean.password}" />
+
+                    </h:panelGrid>
+
+                    <p:commandButton value="S'inscrire" ajax="false" validateClient="true" action="#{validationBean.register()}"/>
+
+                </p:panel>
+            </h:form>
+        </h:body>
+    </f:view>
+</html>

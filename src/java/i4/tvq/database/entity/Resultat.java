@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Resultat.findByUrlresultat", query = "SELECT r FROM Resultat r WHERE r.urlresultat = :urlresultat"),
     @NamedQuery(name = "Resultat.findByMailresultat", query = "SELECT r FROM Resultat r WHERE r.mailresultat = :mailresultat")})
 public class Resultat implements Serializable {
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -51,6 +52,11 @@ public class Resultat implements Serializable {
     private Recherche idrecherche;
 
     public Resultat() {
+    }
+
+    public Resultat(String urlresultat, String mailresultat) {
+        this.urlresultat = urlresultat;
+        this.mailresultat = mailresultat;
     }
 
     public Resultat(BigDecimal idresultat) {

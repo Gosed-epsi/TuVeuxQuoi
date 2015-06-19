@@ -13,14 +13,13 @@
         </h:head>
 
         <h:body>
-
             <p:layout fullPage="true">
                 <p:layoutUnit position="center">
-                    <h:form>
+                    <h:form id="connection">
                         <p:growl id="messages"/>
                         <p:menubar>
                             <p:submenu label="Menu" icon="" styleClass="menu-left">
-                                <p:menuitem value="Inscription" action="#{menuView.inscription()}" styleClass="submenu"/>
+                                <p:menuitem value="Inscription" action="inscription" styleClass="submenu"/>
                                 <p:menuitem value="Profil" styleClass="submenu"/>
                                 <p:menuitem value="Historique" url="#" styleClass="submenu"/>
                                 <p:menuitem value="Logout" url="#" styleClass="submenu"/>
@@ -28,29 +27,32 @@
                         </p:menubar>
                     </h:form>
 
-                    <div align="center" style="padding-top: 15%; border : solid grey; border-radius: 10px; border-width: 1px; width: 55%; margin-right: auto; margin-left: auto; margin-bottom: auto; margin-top: 50px" >
-
-                        <h:graphicImage value="/images/LogoTuVeuxQuoi.jpg" style="margin-bottom: 10%"/>
-                        <h:form id="recherche">
-                            <p:messages id="messages" />
+                    <div align="center" style="border-radius: 10px; border-width: 1px; width: 55%; margin-right: auto; margin-left: auto; margin-bottom: auto; margin-top: 50px" >
+                        <h:form>
+                            <p:dataTable id="resultats" var="res" value="#{resultatView.resultats}"
+                                         selection="#{resultatView.resultat}" >
+                                <p:column headerText="URL">
+                                    <h:outputText value="#{res.urlresultat}" />
+                                </p:column>
+                                <p:column headerText="Mail">
+                                    <h:outputText value="#{res.mailresultat}" />
+                                </p:column>
+                            </p:dataTable>
 
                             <h:panelGrid columns="4" cellpadding="5">
-                                <p:inputText id="rechercheValue"  value="#{searchView.recherche}" required="true" label="Recherche" placeholder="Tapez votre recherche ici" style="width: 100%; text-align: center; margin-left: auto; margin-right: auto;" size="250">
-                                    <f:validateLength minimum="2" />
-                                </p:inputText>
                             </h:panelGrid>
                             <h:panelGrid columns="4" cellpadding="5">
-                                <h:commandButton value="Rechercher" style="margin-left: auto; margin-right: auto;" action="#{searchView.rechercher()}"/>
+                                <p:inputText id="object" placeholder="Objet du mail" required="true"/>
                             </h:panelGrid>
-
+                            <h:panelGrid columns="4" cellpadding="5">
+                                <p:inputTextarea rows="6" cols="100" placeholder="Contenu du message"/>
+                            </h:panelGrid>
                         </h:form>
                     </div>
 
                 </p:layoutUnit>
 
             </p:layout>
-
         </h:body>
-
     </f:view>
 </html>
