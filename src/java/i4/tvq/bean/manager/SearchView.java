@@ -33,7 +33,7 @@ public class SearchView {
     }
 
     public String rechercher() {
-        return "test";
+        return "resultatRecherche?faces-redirect=true";
     }
 
 }

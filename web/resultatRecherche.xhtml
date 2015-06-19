@@ -29,7 +29,7 @@
 
                     <div align="center" style="border-radius: 10px; border-width: 1px; width: 55%; margin-right: auto; margin-left: auto; margin-bottom: auto; margin-top: 50px" >
                         <h:form>
-                            <p:dataTable id="resultats" var="res" value="#{resultatView.resultats}"
+                            <p:dataTable id="resultats" var="res" value="#{resultatView.listResultat}"
                                          selection="#{resultatView.resultat}" >
                                 <p:column headerText="URL">
                                     <h:outputText value="#{res.urlresultat}" />
@@ -37,15 +37,21 @@
                                 <p:column headerText="Mail">
                                     <h:outputText value="#{res.mailresultat}" />
                                 </p:column>
+                                <p:column headerText="Sélection" style="text-align: center;">
+                                    <p:selectBooleanCheckbox />
+                                </p:column>
                             </p:dataTable>
 
                             <h:panelGrid columns="4" cellpadding="5">
                             </h:panelGrid>
-                            <h:panelGrid columns="4" cellpadding="5">
+                            <h:panelGrid columns="4" cellpadding="5" style="margin-right: auto; margin-left: auto;">
                                 <p:inputText id="object" placeholder="Objet du mail" required="true"/>
                             </h:panelGrid>
-                            <h:panelGrid columns="4" cellpadding="5">
+                            <h:panelGrid columns="4" cellpadding="5" style="margin-right: auto; margin-left: auto;">
                                 <p:inputTextarea rows="6" cols="100" placeholder="Contenu du message"/>
+                            </h:panelGrid>
+                            <h:panelGrid columns="4" cellpadding="5" style="margin-right: auto; margin-left: auto;">
+                                <p:commandButton value="Envoyer" ajax="false" validateClient="true" action="#{resultatView.sendMailing()}"/>
                             </h:panelGrid>
                         </h:form>
                     </div>
