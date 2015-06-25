@@ -6,3 +6,10 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 .nb-gradle/
+/Vlib/nbproject/private/
+/EJBTest/nbproject/private/
+/clientTest/nbproject/private/
+/testSoap/nbproject/private/
+/BibliothequeSoap/nbproject/private/
+/BibliothequeConsole/nbproject/private/
+/BibliothequeClient/nbproject/private/

@@ -3,7 +3,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:outputStylesheet library="css" name="style_menu.css"/>
     <f:view contentType="text/html">
         <h:head>
@@ -25,22 +25,33 @@
                                 <p:menuitem value="Historique" url="#" styleClass="submenu"/>
                                 <p:menuitem value="Logout" url="#" styleClass="submenu"/>
                             </p:submenu>
+                            <f:facet name="options">
+                                <h:outputText value="${session.getAttribute('nom')} ${session.getAttribute('prenom')} " />
+                                <c:choose>
+                                    <c:when test="${session.getAttribute('nom') == null}">
+                                        <p:commandButton value="Connexion" action="#{loginBean.goTo()}" />
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p:commandButton value="Déconnexion" action="#{loginBean.logout()}" />
+                                    </c:otherwise>
+                                </c:choose>
+                            </f:facet>
                         </p:menubar>
                     </h:form>
 
-                    <div align="center" style="padding-top: 15%; border : solid grey; border-radius: 10px; border-width: 1px; width: 55%; margin-right: auto; margin-left: auto; margin-bottom: auto; margin-top: 50px" >
+                    <div align="center" style="padding-top: 15%; width: 55%; margin-right: auto; margin-left: auto; margin-bottom: auto; margin-top: 50px" >
 
                         <h:graphicImage value="/images/LogoTuVeuxQuoi.jpg" style="margin-bottom: 10%"/>
                         <h:form id="recherche">
                             <p:messages id="messages" />
 
                             <h:panelGrid columns="4" cellpadding="5">
-                                <p:inputText id="rechercheValue"  value="#{searchView.recherche}" required="true" label="Recherche" placeholder="Tapez votre recherche ici" style="width: 100%; text-align: center; margin-left: auto; margin-right: auto;" size="250">
+                                <p:inputText id="rechercheValue" value="#{searchView.recherche}" required="true" label="#{loginBean.nom}" placeholder="Tapez votre recherche ici" style="width: 100%; text-align: center; margin-left: auto; margin-right: auto;" size="50">
                                     <f:validateLength minimum="2" />
                                 </p:inputText>
                             </h:panelGrid>
                             <h:panelGrid columns="4" cellpadding="5">
-                                <h:commandButton value="Rechercher" style="margin-left: auto; margin-right: auto;" action="#{searchView.rechercher()}"/>
+                                <h:commandButton value="Rechercher" type="submit" style="margin-left: auto; margin-right: auto;" action="#{searchView.rechercher()}" />
                             </h:panelGrid>
 
                         </h:form>

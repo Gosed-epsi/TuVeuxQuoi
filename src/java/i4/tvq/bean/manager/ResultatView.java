@@ -17,7 +17,6 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -80,7 +79,7 @@ public class ResultatView {
         this.body = body;
     }
 
-    public String sendMailing() {
+    public String sendMailing() throws MessagingException {
         String mailList = "";
         for (ResultatMailing res : listResultat) {
             if (res.isToSend()) {
@@ -105,27 +104,24 @@ public class ResultatView {
             Session session = Session.getDefaultInstance(props);
             MimeMessage message = new MimeMessage(session);
 
-            try {
-                message.setFrom(new InternetAddress(from));
-                InternetAddress[] toAddress;
-                toAddress = new InternetAddress[bouchon.length];
+            message.setFrom(new InternetAddress(from));
+            InternetAddress[] toAddress;
+            toAddress = new InternetAddress[bouchon.length];
 
-                // To get the array of addresses
-                for (int i = 0; i < bouchon.length; i++) {
-                    toAddress[i] = new InternetAddress(bouchon[i]);
-                }
-                for (InternetAddress toAddres : toAddress) {
-                    message.addRecipient(Message.RecipientType.TO, toAddres);
-                }
-                message.setSubject(subject);
-                message.setText(body);
-                Transport transport = session.getTransport("smtps");
-                transport.connect(host, from, pass);
-                transport.sendMessage(message, message.getAllRecipients());
-                transport.close();
-            } catch (AddressException ae) {
-            } catch (MessagingException me) {
+            // To get the array of addresses
+            for (int i = 0; i < bouchon.length; i++) {
+                toAddress[i] = new InternetAddress(bouchon[i]);
             }
+            for (InternetAddress toAddres : toAddress) {
+                message.addRecipient(Message.RecipientType.TO, toAddres);
+            }
+            message.setSubject(subject);
+            message.setText(body);
+            Transport transport = session.getTransport("smtps");
+            transport.connect(host, from, pass);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+
         }
         return "index?faces-redirect=true";
     }
