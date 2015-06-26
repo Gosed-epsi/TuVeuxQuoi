@@ -4,12 +4,16 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-    <h:outputStylesheet library="css" name="style_menu.css"/>
     <f:view contentType="text/html">
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
             </f:facet>
+            ${profilBean.client.idclient = session.getAttribute('id')}
+            ${profilBean.client.nomclient = session.getAttribute('nom')}
+            ${profilBean.client.prenomclient = session.getAttribute('prenom')}
+            ${profilBean.client.mailclient = session.getAttribute('mail')}
+            ${profilBean.client.passwordclient = session.getAttribute('password')}
         </h:head>
 
         <h:body>
@@ -45,31 +49,24 @@
                         </p:menubar>
                     </h:form>
 
-                    <div align="center" style="width: 55%; margin-right: auto; margin-left: auto; margin-bottom: auto; margin-top: 50px" >
-                        <h:form>
-                            <p:dataTable id="resultats" var="res" value="#{resultatView.listResultat}" >
-                                <p:column headerText="URL">
-                                    <h:outputText value="#{res.urlresultat}" />
-                                </p:column>
-                                <p:column headerText="Mail">
-                                    <h:outputText value="#{res.mailresultat}" />
-                                </p:column>
-                                <p:column headerText="Sélection" style="text-align: center;">
-                                    <p:selectBooleanCheckbox value="#{res.toSend}" />
-                                </p:column>
-                            </p:dataTable>
-
-                            <h:panelGrid columns="4" cellpadding="5">
-                            </h:panelGrid>
-                            <h:panelGrid columns="4" cellpadding="5" style="margin-right: auto; margin-left: auto;">
-                                <p:inputText id="object" placeholder="Objet du mail" value="#{resultatView.subject}" required="true" />
-                            </h:panelGrid>
-                            <h:panelGrid columns="4" cellpadding="5" style="margin-right: auto; margin-left: auto;">
-                                <p:editor required="true" value="#{resultatView.body}" />
-                            </h:panelGrid>
-                            <h:panelGrid columns="4" cellpadding="5" style="margin-right: auto; margin-left: auto;">
-                                <p:commandButton value="Envoyer" ajax="false" validateClient="true" action="#{resultatView.sendMailing()}"/>
-                            </h:panelGrid>
+                    <div align="center" style="width: 55%; margin-right: auto; margin-left: 50px; margin-bottom: auto; margin-top: 50px" >
+                        <h:form id="profilForm">
+                            <p:growl id="msg" showDetail="true" life="3000" />
+                            <p:panel header="Profil" style="width: 360px;">
+                                <h:panelGrid id="loginPanel" columns="2">
+                                    <h:inputHidden value="#{profilBean.client.idclient}" />
+                                    <p:spacer/>
+                                    <h:outputLabel value="Nom: " />
+                                    <p:inputText id="nom" value="#{profilBean.client.nomclient}" />
+                                    <h:outputLabel value="Prénom: " />
+                                    <p:inputText id="prenom" value="#{profilBean.client.prenomclient}" />
+                                    <h:outputLabel value="Mail: " />
+                                    <p:inputText id="mail" value="#{profilBean.client.mailclient}" />
+                                    <h:outputLabel value="Password: " />
+                                    <p:inputText id="password" value="#{profilBean.client.passwordclient}" />
+                                    <p:commandButton action="#{profilBean.editProfil()}" value="Modifier" update="profilForm" ajax="true" />
+                                </h:panelGrid>
+                            </p:panel>
                         </h:form>
                     </div>
 

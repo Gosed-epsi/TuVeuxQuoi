@@ -69,23 +69,21 @@ public class LoginBean {
         UserConnection uc = new UserConnection();
         Client result = uc.login(mail, password);
         if (result != null) {
-            // get Http Session and store username
             HttpSession session = Util.getSession();
+            session.setAttribute("id", result.getIdclient());
             session.setAttribute("nom", result.getNomclient());
             session.setAttribute("prenom", result.getPrenomclient());
             session.setAttribute("mail", result.getMailclient());
             session.setAttribute("password", result.getPasswordclient());
+            session.setAttribute("listeRecherche", result.getRechercheList());
+            session.setAttribute("isLogged", true);
             return "index?faces-redirect=true";
         } else {
-
             FacesContext.getCurrentInstance().addMessage(
                     null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "Invalid Login!",
                             "Please Try Again!"));
-
-            // invalidate session, and redirect to other pages
-            //message = "Invalid Login. Please Try Again!";
             return "login?faces-redirect=true";
         }
     }

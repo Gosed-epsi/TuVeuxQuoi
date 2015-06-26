@@ -14,10 +14,7 @@ and open the template in the editor.
     <h:body>
 
         <h:form>
-            <p>#{loginBean.nom}</p>
-            <p>#{loginBean.prenom}</p>
-            <p>#{loginBean.mail}</p>
-            <p>#{loginBean.password}</p>
+            <p>${session.getAttribute('nom')}</p>
             <p:commandButton action="#{loginBean.logout()}" value="Logout"  ajax="false"></p:commandButton>
         </h:form>
     </h:body>
