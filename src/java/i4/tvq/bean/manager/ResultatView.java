@@ -5,12 +5,17 @@
  */
 package i4.tvq.bean.manager;
 
+import i4.tvq.bean.Util;
 import i4.tvq.bean.entity.ResultatMailing;
+import i4.tvq.database.entity.Recherche;
 import i4.tvq.database.entity.Resultat;
+import i4.tvq.databse.session.bean.ResultatFacade;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.mail.Message;
@@ -19,6 +24,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -28,10 +34,18 @@ import javax.mail.internet.MimeMessage;
 @RequestScoped
 public class ResultatView {
 
+    @EJB
+    private ResultatFacade resultatFacade = new ResultatFacade();
+
+    private Resultat resultat;
+
     private List<ResultatMailing> listResultat;
-    private ResultatMailing resultat;
+    private ResultatMailing resultatMailing;
     private String subject;
     private String body;
+
+    public ResultatView() {
+    }
 
     @PostConstruct
     public void init() {
@@ -56,11 +70,11 @@ public class ResultatView {
     }
 
     public Resultat getResultat() {
-        return resultat;
+        return resultatMailing;
     }
 
-    public void setResultat(ResultatMailing resultat) {
-        this.resultat = resultat;
+    public void setResultatMailing(ResultatMailing resultatMailing) {
+        this.resultatMailing = resultatMailing;
     }
 
     public String getSubject() {
@@ -80,16 +94,16 @@ public class ResultatView {
     }
 
     public String sendMailing() throws MessagingException {
-        String mailList = "";
+        String mailList = "tuveuxquoi.epsi@gmail.com,";
         for (ResultatMailing res : listResultat) {
             if (res.isToSend()) {
                 mailList += res.getMailresultat() + ",";
             }
         }
-        if (mailList.isEmpty()) {
+        if (mailList.length() != 1) {
             String[] to = mailList.substring(0, mailList.length()).split(",");
-
-            String[] bouchon = {"tuveuxquoi.epsi@gmail.com"};
+            System.out.println(to[0]);
+//            String[] bouchon = {"tuveuxquoi.epsi@gmail.com", "gosselet.edgar@gmail.com"};
             String from = "tuveuxquoi.epsi@gmail.com";
             String pass = "abcd4ABCD";
             Properties props = System.getProperties();
@@ -106,11 +120,11 @@ public class ResultatView {
 
             message.setFrom(new InternetAddress(from));
             InternetAddress[] toAddress;
-            toAddress = new InternetAddress[bouchon.length];
+            toAddress = new InternetAddress[to.length];
 
             // To get the array of addresses
-            for (int i = 0; i < bouchon.length; i++) {
-                toAddress[i] = new InternetAddress(bouchon[i]);
+            for (int i = 0; i < to.length; i++) {
+                toAddress[i] = new InternetAddress(to[i]);
             }
             for (InternetAddress toAddres : toAddress) {
                 message.addRecipient(Message.RecipientType.TO, toAddres);
@@ -124,5 +138,24 @@ public class ResultatView {
 
         }
         return "index?faces-redirect=true";
+    }
+
+    public String goTo(Recherche recherche) {
+//        if (ServiceClient.rechercheService(recherche.getLibellerecherche(), recherche.getProfondeurrecherche().intValue())) {
+//            return "resultatRecherche?faces-redirect=true";
+//        }
+//        return null;
+        return "resultatRecherche?faces-redirect=true";
+    }
+
+    public void saveResults() {
+        HttpSession session = Util.getSession();
+        for (ResultatMailing resultatMailingCurrent : listResultat) {
+            resultat = new Resultat(BigDecimal.ZERO);
+            resultat.setIdrecherche((Recherche) session.getAttribute("recherche"));
+            resultat.setMailresultat(resultatMailingCurrent.getMailresultat());
+            resultat.setUrlresultat(resultatMailingCurrent.getUrlresultat());
+            resultatFacade.create(resultat);
+        }
     }
 }

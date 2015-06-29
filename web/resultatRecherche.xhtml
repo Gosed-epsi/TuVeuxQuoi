@@ -77,5 +77,10 @@
 
             </p:layout>
         </h:body>
+        <c:choose>
+            <c:when test="${session.getAttribute('isLogged') != null}">
+                ${resultatView.saveResults()}
+            </c:when>
+        </c:choose>
     </f:view>
 </html>

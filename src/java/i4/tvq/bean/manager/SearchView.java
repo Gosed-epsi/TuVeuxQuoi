@@ -58,11 +58,14 @@ public class SearchView {
         recherche.setProfondeurrecherche(BigInteger.TEN);
         recherche.setDaterecherche("2000-01-01");
         rechercheFacade.create(recherche);
-        return "resultatRecherche?faces-redirect=true";
+        ResultatView rView = new ResultatView();
+        session.setAttribute("recherche", recherche);
+        return rView.goTo(recherche);
     }
 
     public String rechercherLogout() {
-        return "resultatRecherche?faces-redirect=true";
+        ResultatView rView = new ResultatView();
+        return rView.goTo(recherche);
     }
 
 }
