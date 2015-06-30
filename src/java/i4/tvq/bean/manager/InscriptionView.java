@@ -6,7 +6,7 @@
 package i4.tvq.bean.manager;
 
 import i4.tvq.database.entity.Client;
-import i4.tvq.databse.session.bean.ClientFacade;
+import i4.tvq.database.session.bean.ClientFacade;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import javax.ejb.EJB;
@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
  * @author Edgar
  */
 @ManagedBean
-public class ValidationBean {
+public class InscriptionView {
 
     @EJB
     private ClientFacade clientFacade;
@@ -83,6 +83,10 @@ public class ValidationBean {
         } else {
             return "inscription?faces-redirect=true";
         }
+    }
+
+    public String goTo() {
+        return "inscription?faces-redirect=true";
     }
 
 }

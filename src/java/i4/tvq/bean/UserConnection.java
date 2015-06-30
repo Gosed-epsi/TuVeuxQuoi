@@ -6,7 +6,7 @@
 package i4.tvq.bean;
 
 import i4.tvq.database.entity.Client;
-import i4.tvq.databse.session.bean.ClientFacade;
+import i4.tvq.database.session.bean.ClientFacade;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;

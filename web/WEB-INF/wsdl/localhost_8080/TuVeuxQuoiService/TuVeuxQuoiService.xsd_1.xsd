@@ -1,49 +1,18 @@
-<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.3 (tags/2.3-7528; 2013-04-29T19:34:10+0000) JAXWS-RI/2.2.8 JAXWS/2.2 svn-revision#unknown. --><xs:schema xmlns:tns="http://service.tvqs.i4.epsi/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://service.tvqs.i4.epsi/">
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.3 (tags/2.3-7528; 2013-04-29T19:34:10+0000) JAXWS-RI/2.2.8 JAXWS/2.2 svn-revision#unknown. --><xs:schema xmlns:tns="http://service.search.tvqs.i4/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://service.search.tvqs.i4/">
 
-<xs:element name="rechercheMail" type="tns:rechercheMail"/>
+<xs:element name="recherche" type="tns:recherche"/>
 
-<xs:element name="rechercheMailResponse" type="tns:rechercheMailResponse"/>
-
-<xs:complexType name="rechercheMail">
-<xs:sequence>
-<xs:element name="recherche" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="rechercheMailResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:resultat" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="resultat">
-<xs:sequence>
-<xs:element name="idresultat" type="xs:decimal" minOccurs="0"/>
-<xs:element name="mailresultat" type="xs:string" minOccurs="0"/>
-<xs:element name="recherche" type="tns:recherche" minOccurs="0"/>
-<xs:element name="urlresultat" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
+<xs:element name="rechercheResponse" type="tns:rechercheResponse"/>
 
 <xs:complexType name="recherche">
 <xs:sequence>
-<xs:element name="client" type="tns:client" minOccurs="0"/>
-<xs:element name="daterecherche" type="xs:string" minOccurs="0"/>
-<xs:element name="idrecherche" type="xs:decimal" minOccurs="0"/>
-<xs:element name="libellerecherche" type="xs:string" minOccurs="0"/>
-<xs:element name="profondeurrecherche" type="xs:integer" minOccurs="0"/>
-<xs:element name="resultatList" type="tns:resultat" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="search" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="client">
+<xs:complexType name="rechercheResponse">
 <xs:sequence>
-<xs:element name="idclient" type="xs:decimal" minOccurs="0"/>
-<xs:element name="mailclient" type="xs:string" minOccurs="0"/>
-<xs:element name="nomclient" type="xs:string" minOccurs="0"/>
-<xs:element name="passwordclient" type="xs:string" minOccurs="0"/>
-<xs:element name="prenomclient" type="xs:string" minOccurs="0"/>
-<xs:element name="rechercheList" type="tns:recherche" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="return" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

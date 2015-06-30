@@ -9,7 +9,8 @@ import i4.tvq.bean.Util;
 import i4.tvq.bean.entity.ResultatMailing;
 import i4.tvq.database.entity.Recherche;
 import i4.tvq.database.entity.Resultat;
-import i4.tvq.databse.session.bean.ResultatFacade;
+import i4.tvq.database.session.bean.ResultatFacade;
+import i4.tvq.service.client.ServiceClient;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -141,11 +142,11 @@ public class ResultatView {
     }
 
     public String goTo(Recherche recherche) {
-//        if (ServiceClient.rechercheService(recherche.getLibellerecherche(), recherche.getProfondeurrecherche().intValue())) {
-//            return "resultatRecherche?faces-redirect=true";
-//        }
-//        return null;
-        return "resultatRecherche?faces-redirect=true";
+        if (ServiceClient.recherche(recherche.getLibellerecherche())) {
+            return "resultatRecherche?faces-redirect=true";
+        }
+        return null;
+//        return "resultatRecherche?faces-redirect=true";
     }
 
     public void saveResults() {

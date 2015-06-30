@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package i4.tvq.databse.session.bean;
+package i4.tvq.database.session.bean;
 
 import i4.tvq.database.entity.Resultat;
 import javax.ejb.Stateless;
@@ -16,6 +16,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class ResultatFacade extends AbstractFacade<Resultat> {
+
     @PersistenceContext(unitName = "TuVeuxQuoiPU")
     private EntityManager em;
 
@@ -27,5 +28,4 @@ public class ResultatFacade extends AbstractFacade<Resultat> {
     public ResultatFacade() {
         super(Resultat.class);
     }
-
 }

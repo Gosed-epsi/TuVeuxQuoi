@@ -8,7 +8,7 @@ package i4.tvq.bean.manager;
 import i4.tvq.bean.Util;
 import i4.tvq.database.entity.Client;
 import i4.tvq.database.entity.Recherche;
-import i4.tvq.databse.session.bean.RechercheFacade;
+import i4.tvq.database.session.bean.RechercheFacade;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import javax.ejb.EJB;
@@ -60,10 +60,18 @@ public class SearchView {
         rechercheFacade.create(recherche);
         ResultatView rView = new ResultatView();
         session.setAttribute("recherche", recherche);
+        session.setAttribute("_recherche", _recherche);
         return rView.goTo(recherche);
     }
 
     public String rechercherLogout() {
+        recherche = new Recherche(new BigDecimal(BigInteger.ZERO));
+        recherche.setIdclient(client);
+        recherche.setLibellerecherche(_recherche);
+        recherche.setProfondeurrecherche(BigInteger.TEN);
+        recherche.setDaterecherche("2000-01-01");
+        HttpSession session = Util.getSession();
+        session.setAttribute("_recherche", _recherche);
         ResultatView rView = new ResultatView();
         return rView.goTo(recherche);
     }

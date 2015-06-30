@@ -7,7 +7,7 @@ package i4.tvq.bean.manager;
 
 import i4.tvq.bean.Util;
 import i4.tvq.database.entity.Client;
-import i4.tvq.databse.session.bean.ClientFacade;
+import i4.tvq.database.session.bean.ClientFacade;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  */
 @ManagedBean
 @RequestScoped
-public class ProfilBean {
+public class ProfilView {
 
     @EJB
     private ClientFacade clientFacade;
@@ -28,7 +28,7 @@ public class ProfilBean {
     /**
      * Creates a new instance of ProfilBean
      */
-    public ProfilBean() {
+    public ProfilView() {
         client = new Client();
     }
 

@@ -11,14 +11,10 @@ package i4.tvq.service.client;
  */
 public class ServiceClient {
 
-    private static boolean recherche(java.lang.String arg0, int arg1) {
-        i4.tvq.web.service.RechercheService_Service service = new i4.tvq.web.service.RechercheService_Service();
-        i4.tvq.web.service.RechercheService port = service.getRechercheServicePort();
-        return port.recherche(arg0, arg1);
-    }
-
-    public static boolean rechercheService(String recherche, int profondeur) {
-        return recherche(recherche, profondeur);
+    public static boolean recherche(java.lang.String search) {
+        i4.tvq.service.TuVeuxQuoiService_Service service = new i4.tvq.service.TuVeuxQuoiService_Service();
+        i4.tvq.service.TuVeuxQuoiService port = service.getTuVeuxQuoiServicePort();
+        return port.recherche(search);
     }
 
 }

@@ -22,34 +22,34 @@ and open the template in the editor.
                     <p:messages />
                     <h:panelGrid columns="4" cellpadding="0">
                         <h:outputLabel for="fname" value="Prénom : " />
-                        <p:inputText id="fname" value="#{validationBean.fname}" label="fname"/>
+                        <p:inputText id="fname" value="#{inscriptionView.fname}" label="fname"/>
                         <p:message for="fname" />
-                        <h:outputText value="#{validationBean.fname}" />
+                        <h:outputText value="#{inscriptionView.fname}" />
 
                         <h:outputLabel for="name" value="Nom : " />
-                        <p:inputText id="name" value="#{validationBean.name}" label="name"/>
+                        <p:inputText id="name" value="#{inscriptionView.name}" label="name"/>
                         <p:message for="name" />
-                        <h:outputText value="#{validationBean.name}" />
+                        <h:outputText value="#{inscriptionView.name}" />
 
                         <h:outputLabel for="mail" value="Adresse e-mail : " />
-                        <p:inputText id="mail" value="#{validationBean.mail}" label="mail"/>
+                        <p:inputText id="mail" value="#{inscriptionView.mail}" label="mail"/>
                         <p:message for="mail" />
-                        <h:outputText value="#{validationBean.mail}" />
+                        <h:outputText value="#{inscriptionView.mail}" />
 
                         <h:outputLabel for="password" value="Mot de passe : " />
-                        <p:password id="password" value="#{validationBean.password}"
+                        <p:password id="password" value="#{inscriptionView.password}"
                                     feedback="true" match="vpassword" label="password" required="true"/>
                         <p:message for="password" />
-                        <h:outputText value="#{validationBean.password}" />
+                        <h:outputText value="#{inscriptionView.password}" />
 
                         <h:outputLabel for="vpassword" value="Vérification de mot de passe : "/>
-                        <p:password id="vpassword" value="#{validationBean.password}" label="vpassword" required="true"/>
+                        <p:password id="vpassword" value="#{inscriptionView.password}" label="vpassword" required="true"/>
                         <p:message for="vpassword" />
-                        <h:outputText value="#{validationBean.password}" />
+                        <h:outputText value="#{inscriptionView.password}" />
 
                     </h:panelGrid>
 
-                    <p:commandButton value="S'inscrire" ajax="false" validateClient="true" action="#{validationBean.register()}"/>
+                    <p:commandButton value="S'inscrire" ajax="false" validateClient="true" action="#{inscriptionView.register()}"/>
 
                 </p:panel>
             </h:form>

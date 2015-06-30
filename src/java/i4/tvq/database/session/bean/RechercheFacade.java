@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package i4.tvq.databse.session.bean;
+package i4.tvq.database.session.bean;
 
+import i4.tvq.database.entity.Client;
 import i4.tvq.database.entity.Recherche;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -16,6 +19,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class RechercheFacade extends AbstractFacade<Recherche> {
+
     @PersistenceContext(unitName = "TuVeuxQuoiPU")
     private EntityManager em;
 
@@ -26,6 +30,12 @@ public class RechercheFacade extends AbstractFacade<Recherche> {
 
     public RechercheFacade() {
         super(Recherche.class);
+    }
+
+    public List<Recherche> getRecherchesByClient(Client client) {
+        Query query = em.createNamedQuery("Recherche.findByClient");
+        query.setParameter("idclient", client);
+        return query.getResultList();
     }
 
 }

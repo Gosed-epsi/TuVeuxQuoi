@@ -9,11 +9,11 @@
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
             </f:facet>
-            ${profilBean.client.idclient = session.getAttribute('id')}
-            ${profilBean.client.nomclient = session.getAttribute('nom')}
-            ${profilBean.client.prenomclient = session.getAttribute('prenom')}
-            ${profilBean.client.mailclient = session.getAttribute('mail')}
-            ${profilBean.client.passwordclient = session.getAttribute('password')}
+            ${profilView.client.idclient = session.getAttribute('id')}
+            ${profilView.client.nomclient = session.getAttribute('nom')}
+            ${profilView.client.prenomclient = session.getAttribute('prenom')}
+            ${profilView.client.mailclient = session.getAttribute('mail')}
+            ${profilView.client.passwordclient = session.getAttribute('password')}
         </h:head>
 
         <h:body>
@@ -54,17 +54,17 @@
                             <p:growl id="msg" showDetail="true" life="3000" />
                             <p:panel header="Profil" style="width: 360px;">
                                 <h:panelGrid id="loginPanel" columns="2">
-                                    <h:inputHidden value="#{profilBean.client.idclient}" />
+                                    <h:inputHidden value="#{profilView.client.idclient}" />
                                     <p:spacer/>
                                     <h:outputLabel value="Nom: " />
-                                    <p:inputText id="nom" value="#{profilBean.client.nomclient}" />
+                                    <p:inputText id="nom" value="#{profilView.client.nomclient}" />
                                     <h:outputLabel value="Prénom: " />
-                                    <p:inputText id="prenom" value="#{profilBean.client.prenomclient}" />
+                                    <p:inputText id="prenom" value="#{profilView.client.prenomclient}" />
                                     <h:outputLabel value="Mail: " />
-                                    <p:inputText id="mail" value="#{profilBean.client.mailclient}" />
+                                    <p:inputText id="mail" value="#{profilView.client.mailclient}" />
                                     <h:outputLabel value="Password: " />
-                                    <p:inputText id="password" value="#{profilBean.client.passwordclient}" />
-                                    <p:commandButton action="#{profilBean.editProfil()}" value="Modifier" update="profilForm" ajax="true" />
+                                    <p:inputText id="password" value="#{profilView.client.passwordclient}" />
+                                    <p:commandButton action="#{profilView.editProfil()}" value="Modifier" update="profilForm" ajax="true" />
                                 </h:panelGrid>
                             </p:panel>
                         </h:form>

@@ -24,7 +24,7 @@
     <ejb-local-ref>
         <ejb-ref-name>clientFacade</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
-        <local-home/>
-        <local>i4.tvq.databse.session.bean.ClientFacade</local>
+        <local-home>i4.tvq.database.session.bean.ClientFacade</local-home>
+        <local>i4.tvq.database.session.bean.ClientFacade</local>
     </ejb-local-ref>
 </web-app>

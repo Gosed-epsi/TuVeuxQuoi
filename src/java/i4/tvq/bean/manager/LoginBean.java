@@ -65,11 +65,12 @@ public class LoginBean {
         this.mail = mail;
     }
 
-    public String loginProject() {
+    public String login() {
         UserConnection uc = new UserConnection();
         Client result = uc.login(mail, password);
         if (result != null) {
             HttpSession session = Util.getSession();
+            session.setAttribute("client", result);
             session.setAttribute("id", result.getIdclient());
             session.setAttribute("nom", result.getNomclient());
             session.setAttribute("prenom", result.getPrenomclient());

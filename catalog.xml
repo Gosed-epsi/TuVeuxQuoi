@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://localhost:8080/TuVeuxQuoiService/TuVeuxQuoiService?xsd=2" uri="src/conf/xml-resources/web-service-references/TuVeuxQuoiService/wsdl/localhost_8080/TuVeuxQuoiService/TuVeuxQuoiService.xsd_2.xsd"/>
-    <system systemId="http://localhost:8080/TuVeuxQuoiService/TuVeuxQuoiService?wsdl" uri="src/conf/xml-resources/web-service-references/TuVeuxQuoiService/wsdl/localhost_8080/TuVeuxQuoiService/TuVeuxQuoiService.wsdl"/>
-    <system systemId="http://localhost:8080/TuVeuxQuoiService/TuVeuxQuoiService?xsd=1" uri="src/conf/xml-resources/web-service-references/TuVeuxQuoiService/wsdl/localhost_8080/TuVeuxQuoiService/TuVeuxQuoiService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/TuVeuxQuoiServer/RechercheService?wsdl" uri="src/conf/xml-resources/web-service-references/RechercheService/wsdl/localhost_8080/TuVeuxQuoiServer/RechercheService.wsdl"/>
     <system systemId="http://localhost:8080/RechercheService/RechercheService?wsdl" uri="src/conf/xml-resources/web-service-references/RechercheService/wsdl/localhost_8080/RechercheService/RechercheService.wsdl"/>
     <system systemId="http://localhost:8080/RechercheService/RechercheService?xsd=1" uri="src/conf/xml-resources/web-service-references/RechercheService/wsdl/localhost_8080/RechercheService/RechercheService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/TuVeuxQuoiService/TuVeuxQuoiService?wsdl" uri="src/conf/xml-resources/web-service-references/TuVeuxQuoiService/wsdl/localhost_8080/TuVeuxQuoiService/TuVeuxQuoiService.wsdl"/>
+    <system systemId="http://localhost:8080/TuVeuxQuoiService/TuVeuxQuoiService?xsd=1" uri="src/conf/xml-resources/web-service-references/TuVeuxQuoiService/wsdl/localhost_8080/TuVeuxQuoiService/TuVeuxQuoiService.xsd_1.xsd"/>
 </catalog>

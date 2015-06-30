@@ -26,21 +26,21 @@
             <isset property="conf.dir"/>
         </condition>
     </target>
-    <target name="wsimport-client-RechercheService" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/RechercheService"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/RechercheService" destdir="${build.generated.dir}/jax-wsCache/RechercheService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/RechercheService/wsdl/localhost_8080/RechercheService/RechercheService.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/RechercheService/RechercheService?wsdl" xnocompile="true" xendorsed="true" package="i4.tvq.web.service">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/RechercheService/wsdl/localhost_8080/RechercheService/RechercheService.wsdl"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/RechercheService"/>
+    <target name="wsimport-client-TuVeuxQuoiService" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/TuVeuxQuoiService"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/TuVeuxQuoiService" destdir="${build.generated.dir}/jax-wsCache/TuVeuxQuoiService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/TuVeuxQuoiService/wsdl/localhost_8080/TuVeuxQuoiService/TuVeuxQuoiService.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/TuVeuxQuoiService/TuVeuxQuoiService?wsdl" xnocompile="true" xendorsed="true" package="i4.tvq.service">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/TuVeuxQuoiService/wsdl/localhost_8080/TuVeuxQuoiService/TuVeuxQuoiService.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/TuVeuxQuoiService"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/RechercheService">
+            <fileset dir="${build.generated.dir}/jax-wsCache/TuVeuxQuoiService">
                 <include name="**/*.java"/>
             </fileset>
         </copy>
     </target>
-    <target name="wsimport-client-clean-RechercheService" depends="-init-project">
-        <delete dir="${build.generated.sources.dir}/jax-ws/i4/tvq/web/service"/>
-        <delete dir="${build.generated.dir}/jax-wsCache/RechercheService"/>
+    <target name="wsimport-client-clean-TuVeuxQuoiService" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/i4/tvq/service"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/TuVeuxQuoiService"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-RechercheService"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-TuVeuxQuoiService"/>
 </project>
